@@ -35,6 +35,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void startService(View view) {
+        startService(new Intent(MainActivity.this, LocalService.class));
+    }
+
+
+    public void stopService(View view) {
+        stopService(new Intent(MainActivity.this, LocalService.class));
+    }
+    public void bindService(View view) {
+        // Establish a connection with the service.  We use an explicit
+        // class name because we want a specific service implementation that
+        // we know will be running in our own process (and thus won't be
+        // supporting component replacement by other applications).
+        bindService(new Intent(MainActivity.this,
+                LocalService.class), mConnection, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+
+    }
+    public void unbindService(View view) {
+        unbind();
+    }
+
+    void unbind() {
+        if (mIsBound) {
+            // Detach our existing connection.
+            unbindService(mConnection);
+            mIsBound = false;
+        }
+    }
+
+
 
     private ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -133,44 +164,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unbind();
-    }
-
-    public void startService(View view) {
-        startService(new Intent(MainActivity.this, LocalService.class));
-    }
-
-
-    public void stopService(View view) {
-        stopService(new Intent(MainActivity.this, LocalService.class));
-    }
-    public void bindService(View view) {
-        // Establish a connection with the service.  We use an explicit
-        // class name because we want a specific service implementation that
-        // we know will be running in our own process (and thus won't be
-        // supporting component replacement by other applications).
-        bindService(new Intent(MainActivity.this,
-                LocalService.class), mConnection, Context.BIND_AUTO_CREATE);
-        mIsBound = true;
-
-    }
-    public void unbindService(View view) {
-        unbind();
-    }
-
-    void unbind() {
-        if (mIsBound) {
-            // Detach our existing connection.
-            unbindService(mConnection);
-            mIsBound = false;
-        }
-    }
-
-
     public void bindRemoteService(View view) {
         // Establish a connection with the service.  We use an explicit
         // class name because there is no reason to be able to let other
@@ -202,6 +195,12 @@ public class MainActivity extends AppCompatActivity {
             mIsRemoteBound = false;
             tv_remote_callback.setText("Unbinding.");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbind();
     }
 
 }
