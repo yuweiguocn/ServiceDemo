@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ServiceDemo</string>
+    <string name="start_service">Start Local Service</string>
+    <string name="stop_service">Stop Local Service</string>
+    <string name="bind_service">Bind Local Service</string>
+    <string name="unbind_service">Unbind Local Service</string>
+    <string name="bind_remote_service">Bind Remote Service</string>
+    <string name="unbind_remote_service">Unbind Remote Service</string>
+    <string name="local_service_sample">Local Service Sample</string>
+    <string name="remote_service_sample">Remote Service Sample</string>
+    <string name="local_service_started">本地Service开启</string>
+    <string name="local_service_stopped">本地Service停止</string>
+    <string name="local_service_label">本地Service</string>
+    <string name="local_service_connected">本地Service已连接</string>
+    <string name="remote_service_connected">远程Service已连接</string>
+    <string name="remote_service_disconnected">远程Service已断开连接</string>
+    <string name="local_service_disconnected">本地Service已断开连接</string>
+    <string name="remote_service_stopped">远程Service停止</string>
+    <string name="remote_service_started">远程Service开启</string>
+</resources>
